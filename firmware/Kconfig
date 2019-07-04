@@ -1,0 +1,13 @@
+menu "Firmware files"
+
+config EXTRA_FIRMWARE_DIR
+	string "Firmware blobs root directory"
+	default "firmware"
+
+config FIRMWARE_IMX_LPDDR4_PMU_TRAIN
+       	bool
+
+config FIRMWARE_IMX8MQ_ATF
+        bool
+
+endmenu

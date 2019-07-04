@@ -1,0 +1,48 @@
+#include <mips/qca/ar9331_dpt_module.dts>
+#include "ar9331.dtsi"
+
+/ {
+	aliases {
+		spiflash = &spiflash;
+	};
+
+	chosen {
+		environment {
+			compatible = "barebox,environment";
+			device-path = &spiflash, "partname:barebox-environment";
+		};
+
+		art@0 {
+			compatible = "qca,art-ar9331", "qca,art";
+			device-path = &spiflash_art;
+			barebox,provide-mac-address = <&mac0>;
+		};
+	};
+
+	leds {
+		system {
+			barebox,default-trigger = "heartbeat";
+		};
+	};
+};
+
+&spiflash {
+	partition@0 {
+		label = "barebox";
+		reg = <0 0x80000>;
+	};
+
+	partition@80000 {
+		label = "barebox-environment";
+		reg = <0x80000 0x10000>;
+	};
+
+	spiflash_art: partition@7f0000 {
+		label = "art";
+		reg = <0x7f0000 0x10000>;
+	};
+};
+
+&mac0 {
+	status = "okay";
+};

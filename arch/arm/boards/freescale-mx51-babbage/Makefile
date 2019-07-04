@@ -1,0 +1,3 @@
+obj-$(CONFIG_MACH_FREESCALE_MX51_PDK_POWER) += power.o
+obj-$(CONFIG_MACH_FREESCALE_MX51_PDK) += board.o
+lwl-$(CONFIG_MACH_FREESCALE_MX51_PDK) += lowlevel.o

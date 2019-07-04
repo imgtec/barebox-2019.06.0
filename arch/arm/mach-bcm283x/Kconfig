@@ -1,0 +1,36 @@
+if ARCH_BCM283X
+
+config ARCH_TEXT_BASE
+	hex
+	default 0x0
+
+config MACH_RPI_COMMON
+	bool
+
+menu "select Broadcom BCM283X boards to be built"
+
+config MACH_RPI
+	bool "RaspberryPi (BCM2835/ARM1176JZF-S)"
+	select CPU_V6
+	select MACH_RPI_COMMON
+
+config MACH_RPI2
+	bool "RaspberryPi 2 (BCM2836/CORTEX-A7)"
+	select CPU_V7
+	select MACH_RPI_COMMON
+
+config MACH_RPI3
+	bool "RaspberryPi 3 (BCM2837/CORTEX-A53)"
+	select CPU_V7
+	select MACH_RPI_COMMON
+	select ARM_SECURE_MONITOR
+
+config MACH_RPI_CM3
+	bool "RaspberryPi Compute Module 3 (BCM2837/CORTEX-A53)"
+	select CPU_V7
+	select MACH_RPI_COMMON
+	select ARM_SECURE_MONITOR
+
+endmenu
+
+endif

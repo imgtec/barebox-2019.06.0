@@ -1,0 +1,81 @@
+menuconfig USB_GADGET
+	select USB
+	select POLLER
+	bool "USB gadget support"
+
+if USB_GADGET
+
+config USB_GADGET_DUALSPEED
+	bool
+
+config USB_GADGET_DRIVER_ARC
+	bool
+	prompt "Arc OTG device core"
+	depends on ARCH_IMX || ARCH_MXS
+	default y
+	select USB_GADGET_DUALSPEED
+
+config USB_GADGET_DRIVER_AT91
+	bool
+	prompt "at91 gadget driver"
+	depends on ARCH_AT91
+	depends on !ARCH_SAMA5D4
+	default y
+	select USB_GADGET_DUALSPEED
+
+config USB_GADGET_DRIVER_PXA27X
+	bool
+	prompt "PXA27x gadget driver"
+	depends on ARCH_PXA27X
+	default y
+	select USB_GADGET_DUALSPEED
+
+config USB_GADGET_AUTOSTART
+	bool
+	default y
+	prompt "Automatically start usbgadget on boot"
+	help
+	  Enabling this option allows to automatically start a dfu or
+	  fastboot gadget during boot. This behaviour is controlled with
+	  the global.usbgadget.{dfu,fastboot}_function variable.
+
+comment "USB Gadget drivers"
+
+config USB_GADGET_DFU
+	bool
+	select FILE_LIST
+	prompt "Device Firmware Update Gadget"
+
+config USB_GADGET_SERIAL
+	bool
+	depends on !CONSOLE_NONE
+	prompt "Serial Gadget"
+
+config USB_GADGET_FASTBOOT
+	bool
+	select BANNER
+	select FILE_LIST
+	prompt "Android Fastboot support"
+
+config USB_GADGET_FASTBOOT_SPARSE
+	bool
+	select IMAGE_SPARSE
+	prompt "Enable Fastboot sparse image support"
+	help
+	  Sparse images are a way for the fastboot protocol to write
+	  images that are bigger than the available memory. If unsure,
+	  say yes here.
+
+config USB_GADGET_FASTBOOT_BUF
+	bool
+	depends on USB_GADGET_FASTBOOT
+	prompt "Download files to temporary buffer instead of file"
+	help
+	  With this option enabled the fastboot code will download files to a
+	  temporary buffer instead of a temporary file. Normally you want to
+	  use a file as this also works when your memory is fragmented. However,
+	  in some special cases, when the file consumer also better copes with
+	  a buffer, then using a buffer might be better.
+
+	  Say no here unless you know what you are doing.
+endif
