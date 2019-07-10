@@ -78,6 +78,13 @@ config MACH_DUCKBILL
 	help
 	  Say Y here if you are using the I2SE Duckbill board
 
+config MACH_EASYARM_IMX283A
+	bool "EasyARM i.mx283a"
+	select MXS_OCOTP
+	select HAVE_PBL_MULTI_IMAGES
+	help
+	  Say Y here if you are using the zlg EasyARM board
+
 config MACH_CFA10036
 	bool "cfa-10036"
 	select MXS_OCOTP

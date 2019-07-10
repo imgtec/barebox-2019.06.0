@@ -38,6 +38,19 @@ image-$(CONFIG_MACH_DUCKBILL) += barebox-duckbill-sd.img
 FILE_barebox-duckbill-2nd.img = start_barebox_duckbill.pblb
 image-$(CONFIG_MACH_DUCKBILL) += barebox-duckbill-2nd.img
 
+
+
+pblb-$(CONFIG_MACH_EASYARM_IMX283A) += start_barebox_freescale_mx28evk prep_start_barebox_freescale_mx28evk
+CFG_start_barebox_freescale_mx28evk.mxsbs = $(mxs28cfg)
+FILE_barebox-freescale-mx28evk-bootstream.img = start_barebox_freescale_mx28evk.mxsbs
+image-$(CONFIG_MACH_EASYARM_IMX283A) += barebox-freescale-mx28evk-bootstream.img
+FILE_barebox-freescale-mx28evk-sd.img = start_barebox_freescale_mx28evk.mxsbs.mxssd
+image-$(CONFIG_MACH_EASYARM_IMX283A) += barebox-freescale-mx28evk-sd.img
+FILE_barebox-freescale-mx28evk-2nd.img = start_barebox_freescale_mx28evk.pblb
+image-$(CONFIG_MACH_EASYARM_IMX283A) += barebox-freescale-mx28evk-2nd.img
+
+
+
 pblb-$(CONFIG_MACH_TX28) += start_barebox_karo_tx28 prep_start_barebox_karo_tx28
 CFG_start_barebox_karo_tx28.mxsbs = $(mxs28cfg)
 FILE_barebox-karo-tx28-bootstream.img = start_barebox_karo_tx28.mxsbs
